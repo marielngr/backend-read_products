@@ -7,5 +7,7 @@ export default async function handler(request, response) {
     const products = await Product.find();
     console.log(products);
     return response.status(200).json(products);
+  } else {
+    return response.status(404).json({ status: "Not Found" });
   }
 }
