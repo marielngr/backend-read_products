@@ -7,6 +7,9 @@ export default async function handler(request, response) {
   const { id } = request.query;
 
   if (request.method === "GET") {
+    // Populate ersetzt das Array "reviews" in Products, welches eigentlich ein Array
+    // von ObjectIds ist, durch ein Array der zugehörigen Objekte aus der referenzierten
+    // Collection, hier die "Review" Collection (siehe Schema von Product)
     const product = await Product.findById(id).populate("reviews");
 
     if (!product) {

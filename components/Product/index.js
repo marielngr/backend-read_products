@@ -7,7 +7,7 @@ import Comments from "../Comments";
 export default function Product() {
   const router = useRouter();
   const { id } = router.query;
-
+  //hier noch Fall abdecken, dass ID noch undefined ist
   const { data, isLoading } = useSWR(`/api/products/${id}`);
   console.log(data);
   if (isLoading) {
@@ -25,11 +25,7 @@ export default function Product() {
       <p>
         Price: {data.price} {data.currency}
       </p>
-      {data.reviews.length ? (
-        <p>
-          <Comments reviews={data.reviews} />
-        </p>
-      ) : null}
+      {data.reviews.length ? <Comments reviews={data.reviews} /> : null}
       <StyledLink href="/">Back to all</StyledLink>
     </ProductCard>
   );
