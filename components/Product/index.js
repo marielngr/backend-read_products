@@ -7,9 +7,9 @@ import Comments from "../Comments";
 export default function Product() {
   const router = useRouter();
   const { id } = router.query;
-  //hier noch Fall abdecken, dass ID noch undefined ist
-  const { data, isLoading } = useSWR(`/api/products/${id}`);
-  console.log(data);
+  //ternary, falls ID noch undefined ist
+  const { data, isLoading } = useSWR(id ? `/api/products/${id}` : null);
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }
